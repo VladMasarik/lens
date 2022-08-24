@@ -13,6 +13,7 @@ import type { UserPreferencesModel, StoreType } from "./preferences-helpers";
 import logger from "../../main/logger";
 import type { SelectedUpdateChannel } from "../application-update/selected-update-channel/selected-update-channel.injectable";
 import type { ReleaseChannel } from "../application-update/update-channels";
+import type { EmitAppEvent } from "../app-event-bus/emit-event.injectable";
 
 export interface UserStoreModel {
   lastSeenAppVersion: string;
@@ -21,6 +22,7 @@ export interface UserStoreModel {
 
 interface Dependencies {
   readonly selectedUpdateChannel: SelectedUpdateChannel;
+  emitAppEvent: EmitAppEvent;
 }
 
 export class UserStore extends BaseStore<UserStoreModel> /* implements UserStoreFlatModel (when strict null is enabled) */ {
