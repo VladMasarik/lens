@@ -11,10 +11,10 @@ import type { UserStore } from "../../../common/user-store";
 import { Select } from "../select";
 import { Switch } from "../switch";
 import { defaultPackageMirror, packageMirrors } from "../../../common/user-store/preferences-helpers";
-import directoryForBinariesInjectable from "../../../common/app-paths/directory-for-binaries/directory-for-binaries.injectable";
+import directoryForBinariesInjectable from "../../../common/app-paths/directory-for-binaries.injectable";
 import { withInjectables } from "@ogre-tools/injectable-react";
 import userStoreInjectable from "../../../common/user-store/user-store.injectable";
-import directoryForKubectlBinariesInjectable from "../../../common/app-paths/directory-for-kubectl-binaries/directory-for-kubectl-binaries.injectable";
+import directoryForKubectlBinariesInjectable from "../../../common/app-paths/directory-for-kubectl-binaries.injectable";
 
 interface Dependencies {
   defaultPathForGeneralBinaries: string;
@@ -101,8 +101,8 @@ export const KubectlBinaries = withInjectables<Dependencies>(
   NonInjectedKubectlBinaries,
   {
     getProps: (di) => ({
-      defaultPathForGeneralBinaries: di.inject(directoryForBinariesInjectable),
-      defaultPathForKubectlBinaries: di.inject(directoryForKubectlBinariesInjectable),
+      defaultPathForGeneralBinaries: di.inject(directoryForBinariesInjectable).get(),
+      defaultPathForKubectlBinaries: di.inject(directoryForKubectlBinariesInjectable).get(),
       userStore: di.inject(userStoreInjectable),
     }),
   },
