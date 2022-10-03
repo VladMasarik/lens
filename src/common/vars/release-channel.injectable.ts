@@ -3,10 +3,10 @@
  * Licensed under MIT License. See LICENSE in root directory for more information.
  */
 import type { ReleaseChannel } from "../application-update/update-channels";
-import { createInitializableState } from "../initializable-state/create";
+import { createLazyInitializableState } from "../initializable-state/create-lazy";
 import buildSemanticVersionInjectable from "./build-semantic-version.injectable";
 
-const releaseChannelInjectable = createInitializableState({
+const releaseChannelInjectable = createLazyInitializableState({
   id: "release-channel",
   init: (di): ReleaseChannel => {
     const buildSemanticVersion = di.inject(buildSemanticVersionInjectable);
