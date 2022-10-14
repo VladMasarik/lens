@@ -8,13 +8,17 @@ import type { ApplicationBuilder } from "../../renderer/components/test-utils/ge
 import { getApplicationBuilder } from "../../renderer/components/test-utils/get-application-builder";
 
 describe("preferences - navigation using application menu", () => {
-  let applicationBuilder: ApplicationBuilder;
+  let builder: ApplicationBuilder;
   let rendered: RenderResult;
 
   beforeEach(async () => {
-    applicationBuilder = getApplicationBuilder();
+    builder = getApplicationBuilder();
 
-    rendered = await applicationBuilder.render();
+    rendered = await builder.render();
+  });
+
+  afterEach(() => {
+    builder.quit();
   });
 
   it("renders", () => {
@@ -29,7 +33,7 @@ describe("preferences - navigation using application menu", () => {
 
   describe("when navigating to preferences using application menu", () => {
     beforeEach(() => {
-      applicationBuilder.applicationMenu.click("root.preferences");
+      builder.applicationMenu.click("root.preferences");
     });
 
     it("renders", () => {

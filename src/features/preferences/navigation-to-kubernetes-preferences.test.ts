@@ -15,6 +15,10 @@ describe("preferences - navigation to kubernetes preferences", () => {
     builder = getApplicationBuilder();
   });
 
+  afterEach(() => {
+    builder.quit();
+  });
+
   describe("given in preferences, when rendered", () => {
     let rendered: RenderResult;
 

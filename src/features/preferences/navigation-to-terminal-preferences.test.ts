@@ -7,21 +7,25 @@ import type { ApplicationBuilder } from "../../renderer/components/test-utils/ge
 import { getApplicationBuilder } from "../../renderer/components/test-utils/get-application-builder";
 
 describe("preferences - navigation to terminal preferences", () => {
-  let applicationBuilder: ApplicationBuilder;
+  let builder: ApplicationBuilder;
 
   beforeEach(() => {
-    applicationBuilder = getApplicationBuilder();
+    builder = getApplicationBuilder();
+  });
+
+  afterEach(() => {
+    builder.quit();
   });
 
   describe("given in preferences, when rendered", () => {
     let rendered: RenderResult;
 
     beforeEach(async () => {
-      applicationBuilder.beforeWindowStart(() => {
-        applicationBuilder.preferences.navigate();
+      builder.beforeWindowStart(() => {
+        builder.preferences.navigate();
       });
 
-      rendered = await applicationBuilder.render();
+      rendered = await builder.render();
     });
 
     it("renders", () => {
@@ -36,7 +40,7 @@ describe("preferences - navigation to terminal preferences", () => {
 
     describe("when navigating to terminal preferences using navigation", () => {
       beforeEach(() => {
-        applicationBuilder.preferences.navigation.click("terminal");
+        builder.preferences.navigation.click("terminal");
       });
 
       it("renders", () => {

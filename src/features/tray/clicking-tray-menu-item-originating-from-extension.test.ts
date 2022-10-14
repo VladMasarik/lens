@@ -26,6 +26,10 @@ describe("clicking tray menu item originating from extension", () => {
     await builder.render();
   });
 
+  afterEach(() => {
+    builder.quit();
+  });
+
   describe("when extension is enabled", () => {
     let someExtension: FakeExtensionOptions;
     let clickMock: jest.Mock;

@@ -19,6 +19,10 @@ describe.only("preferences - navigation block with links", () => {
     builder = getApplicationBuilder();
   });
 
+  afterEach(() => {
+    builder.quit();
+  });
+
   describe("given in preferences, when rendered", () => {
     let renderer: RenderResult;
 

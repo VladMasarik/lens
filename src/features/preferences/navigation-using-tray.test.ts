@@ -7,13 +7,17 @@ import type { ApplicationBuilder } from "../../renderer/components/test-utils/ge
 import { getApplicationBuilder } from "../../renderer/components/test-utils/get-application-builder";
 
 describe("show-about-using-tray", () => {
-  let applicationBuilder: ApplicationBuilder;
+  let builder: ApplicationBuilder;
   let rendered: RenderResult;
 
   beforeEach(async () => {
-    applicationBuilder = getApplicationBuilder();
+    builder = getApplicationBuilder();
 
-    rendered = await applicationBuilder.render();
+    rendered = await builder.render();
+  });
+
+  afterEach(() => {
+    builder.quit();
   });
 
   it("renders", () => {
@@ -28,7 +32,7 @@ describe("show-about-using-tray", () => {
 
   describe("when navigating using tray", () => {
     beforeEach(async () => {
-      await applicationBuilder.tray.click("open-preferences");
+      await builder.tray.click("open-preferences");
     });
 
     it("renders", () => {
